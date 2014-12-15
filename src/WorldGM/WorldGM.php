@@ -10,14 +10,8 @@ use pocketmine\Player;
 
 class WorldGM extends PluginBase {
 
-    private $utilities;
-
     const CONFIG_EXCLUDED = "excludedPlayers";
     const CONFIG_WORLDS = "worlds";
-
-    public function __construct() {
-        $this->utilities = new Utilities($this);
-    }
 
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
