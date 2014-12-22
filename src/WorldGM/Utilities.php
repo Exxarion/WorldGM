@@ -8,7 +8,7 @@ use pocketmine\Server;
 class Utilities {
 
     public static function getWorldGamemode(Config $config, $world) {
-        return (isset($config->get(WorldGM::CONFIG_WORLDS)[$world])) ? $config->get(WorldGM::CONFIG_WORLDS)[$world]
+        return (isset($config->get(WorldGM::CONFIG_WORLDS)[$world])) ? $config->get(WorldGM::CONFIG_WORLDS)[$world] : Server::getInstance()->getDefaultGamemode();
     }
 
     public static function setWorldGamemode(Config $config, $world, $gamemode) {
