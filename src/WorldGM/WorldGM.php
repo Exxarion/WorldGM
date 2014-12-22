@@ -107,7 +107,7 @@ class WorldGM extends PluginBase {
 
             if (($mode = Server::getGamemodeFromString($params[0])) !== -1 && $params[0] != "none") {
 
-                if ($this->getServer()->getLevel($params[1]) !== null) {
+                if ($this->getServer()->getLevel($params[1]) == null) {
                     $world = $params[1];
                 } else {
                     return "There is no world called that. Be aware world names ARE case sensitive";
