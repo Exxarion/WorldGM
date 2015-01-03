@@ -98,10 +98,10 @@ class WorldGM extends PluginBase {
                 if ($sender instanceof Player) {
                     $world = $sender->getLevel()->getName();
                 } else {
-                    return "You must put a world!";
+                    return "[WorldGM] You must put a world!";
                 }
             } else {
-                return "Please put an existing gamemode";
+                return "[WorldGM] Please put an existing gamemode";
             }
         } elseif (count($params) == 2) {
 
@@ -110,17 +110,17 @@ class WorldGM extends PluginBase {
                 if ($this->getServer()->getLevel($params[1]) == null) {
                     $world = $params[1];
                 } else {
-                    return "There is no world called that. Be aware world names ARE case sensitive";
+                    return "[WorldGM] There is no world called that. Be aware world names ARE case sensitive";
                 }
             } elseif (($mode = Server::getGamemodeFromString($params[1])) !== -1 && $params[0] != "none") {
 
                 if ($this->getServer()->getLevel($params[0]) !== null) {
                     $world = $params[0];
                 } else {
-                    return "There is no world called that. Be aware world names ARE case sensitive";
+                    return "[WorldGM] There is no world called that. Be aware world names ARE case sensitive";
                 }
             } else {
-                return "You must put a correct gamemode! (survival, creative, view, or adventure)";
+                return "[WorldGM] Please put an actual gamemode";
             }
         } else {
             return "Usage: /wgm set <gamemode> (world)";
@@ -129,7 +129,7 @@ class WorldGM extends PluginBase {
 
         Utilities::setWorldGamemode($this->getConfig(), $world, $mode);
         $this->checkAllPlayers($world);
-        return "Set world $world to gamemode $mode.";
+        return "[WorldGM] Set world $world to gamemode $mode.";
     }
 
     public function excludePlayerCmd($sender, $params) {
@@ -144,7 +144,7 @@ class WorldGM extends PluginBase {
                 return $player->getName() . " already is non-affected.";
             }
         } else {
-            return "$playerpar is not online";
+            return "[WorldGM] $playerpar is not online";
         }
     }
 
@@ -162,7 +162,7 @@ class WorldGM extends PluginBase {
                 return $player->getName() . " already is affected.";
             }
         } else {
-            return "$playerpar is not online";
+            return "[WorldGM] $playerpar is not online";
         }
     }
 
