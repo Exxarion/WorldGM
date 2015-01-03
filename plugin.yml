@@ -1,19 +1,19 @@
 #name, main, version and api are required
 name: WorldGM
 main: WorldGM\WorldGM
-version: 1.0
-api: [1.6.0]
+version: 2.0
+api: [1.10.0]
 
 load: POSTWORLD
 author: tschrock/Exxarion
 description: Set different gamemodes for certain worlds
-website: http://www.tschrock.net & http://aplus-craft.tk
+website: http://aplus-craft.tk
 commands:
  wgm:
   description: Main Command.
-  usage: "Usage: /wgm set <gamemode> <world> - /wgm <include/exclude> player"
+  usage: "Usage: /wgm set <gamemode> (world) - /wgm <include/exclude> <player>"
   permission: worldgm.command.wgm
 permissions:
  worldgm.command.wgm:
   description: "Allows the user to set world gamemodes"
-  default: true
+  default: op
