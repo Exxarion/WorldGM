@@ -10,3 +10,6 @@
 This plugin automatically changes a player's Gamemode to what you set the World Gamemode to, except for the players who are whitelisted for No-Gamemode change (excluding).
 
 It is very simple to use! All you have to do is run a command and sit back & Relax!
+
+
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Exxarion/WorldGM?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
