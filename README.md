@@ -18,7 +18,7 @@ Commands/Permissions:
 Command  | Description | Permission
 ------------- | ------------- | -------------
 /wgm  | Base command | wgm.use
-/wgm set <world> <gamemode>  | Sets the gamemode for the world
+/wgm set <gamemode>  | Sets the gamemode for the world
 /wgm exclude <player> | Excludes the player from gamemode changes
 /wgm include <player> | Includes the player in gamemode changes
 
