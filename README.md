@@ -3,6 +3,8 @@
 
 
 </br>
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Exxarion/WorldGM?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+</br>
 
 
 <center>This handy plugin allows you to set different gamemodes for different worlds in your Pocketmine server! This plugin is very useful to Multi-Gamemode servers and could be an essential plugin for your server
@@ -11,5 +13,12 @@ This plugin automatically changes a player's Gamemode to what you set the World 
 
 It is very simple to use! All you have to do is run a command and sit back & Relax!
 
+Commands/Permissions:
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Exxarion/WorldGM?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Command  | Description | Permission
+------------- | ------------- | -------------
+/wgm  | Base command | wgm.command
+/wgm set <world> <gamemode>  | Sets the gamemode for the world
+/wgm exclude <player> | Excludes the player from gamemode changes
+/wgm include <player> | Includes the player in gamemode changes
+
