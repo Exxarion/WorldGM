@@ -10,8 +10,14 @@ use pocketmine\Player;
 
 class WorldGM extends PluginBase {
 
-    const CONFIG_EXCLUDED = "excludedPlayers";
+    private $utilities;
+
+    const CONFIG_EXCLUDED = "excluded";
     const CONFIG_WORLDS = "worlds";
+
+    public function __construct() {
+        $this->utilities = new Utilities($this);
+    }
 
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
@@ -34,7 +40,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     default:
-                        $sender->sendMessage("Usage: /wgm <set/exclude/include>");
+                        $sender->sendMessage("Hello " . $sender->getName() . "!");
                         return true;
                 }
             default:
@@ -77,7 +83,7 @@ class WorldGM extends PluginBase {
         if ($worldGamemode == "none") {
             $gamemodeTo = false;
         } else if (($gamemodeTo = Server::getGamemodeFromString($worldGamemode)) == -1) {
-            $this->getLogger()->warning($worldGamemode . ' is not a gamemode! (WorldGM/config.yml) The default gamemode will be used.');
+            $this->getLogger()->warning([WorldGM] $worldGamemode . ' is not a valid gamemode! (WorldGM/config.yml)\n Using the default gamemode instead');
             $gamemodeTo = Server::getDefaultGamemode();
         }
         
@@ -98,29 +104,29 @@ class WorldGM extends PluginBase {
                 if ($sender instanceof Player) {
                     $world = $sender->getLevel()->getName();
                 } else {
-                    return "[WorldGM] You must put a world!";
+                    return "[WorldGM] Please specify a world";
                 }
             } else {
-                return "[WorldGM] Please put an existing gamemode";
+                return "[WorldGM] Please specify a gamemode\n [Survival, Creative, or Adventure]";
             }
         } elseif (count($params) == 2) {
 
             if (($mode = Server::getGamemodeFromString($params[0])) !== -1 && $params[0] != "none") {
 
-                if ($this->getServer()->getLevel($params[1]) == null) {
+                if ($this->getServer()->getLevel($params[1]) !== null) {
                     $world = $params[1];
                 } else {
-                    return "[WorldGM] There is no world called that. Be aware world names ARE case sensitive";
+                    return "[WorldGM] That world does not exist.";
                 }
             } elseif (($mode = Server::getGamemodeFromString($params[1])) !== -1 && $params[0] != "none") {
 
                 if ($this->getServer()->getLevel($params[0]) !== null) {
                     $world = $params[0];
                 } else {
-                    return "[WorldGM] There is no world called that. Be aware world names ARE case sensitive";
+                    return "[WorldGM] That world does not exist";
                 }
             } else {
-                return "[WorldGM] Please put an actual gamemode";
+                return "[WorldGM] Please specify a gamemode\n [Survival, Creative, or Adventure]";
             }
         } else {
             return "Usage: /wgm set <gamemode> (world)";
@@ -129,7 +135,7 @@ class WorldGM extends PluginBase {
 
         Utilities::setWorldGamemode($this->getConfig(), $world, $mode);
         $this->checkAllPlayers($world);
-        return "[WorldGM] Set world $world to gamemode $mode.";
+        return "[WorldGM] $world's gamemode has been set to $mode.";
     }
 
     public function excludePlayerCmd($sender, $params) {
@@ -139,12 +145,12 @@ class WorldGM extends PluginBase {
         }
         if (null !== $player = $this->getServer()->getPlayer($playerpar)) {
             if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
-                return $player->getName() . " will not be affected by gamemode changes.";
+                return $player->getName() . " will not be affected by world gamemode changes";
             } else {
-                return $player->getName() . " already is non-affected.";
+                return $player->getName() . " has already been excluded";
             }
         } else {
-            return "[WorldGM] $playerpar is not online";
+            return "$playerpar is currently offline";
         }
     }
 
@@ -156,14 +162,15 @@ class WorldGM extends PluginBase {
         if (null !== $player = $this->getServer()->getPlayer($playerpar)) {
             if (Utilities::removeprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
                 $this->checkPlayer($player);
-                return $player->getName() . " will now be affected by gamemode changes.";
+                return $player->getName() . " will be affected by world gamemode changes";
                 
             } else {
-                return $player->getName() . " already is affected.";
+                return $player->getName() . " has already been included";
             }
         } else {
-            return "[WorldGM] $playerpar is not online";
+            return "$playerpar is currently offline";
         }
     }
 
 }
+
