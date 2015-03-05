@@ -40,7 +40,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     default:
-                        $sender->sendMessage("\nWorldGM v3.0 by Exxarion\nUsage: /wgm set <0/1/2>\n/wgm <include/exclude> <player>");
+                        $sender->sendMessage("\nWorldGM v3.0 by Exxarion\nUsage: /wgm set <0/1/2>\n/wgm <include/exclude> <player>\n*Command must be run as a player*");
                         return true;
                 }
             default:
