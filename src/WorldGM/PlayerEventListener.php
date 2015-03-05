@@ -12,10 +12,13 @@ class PlayerEventListener implements Listener {
 
     private $plugin;
 
-    public function __construct(WorldGM $plugin) {
+    public function __construct(PerWorldGamemode $plugin) {
         $this->plugin = $plugin;
     }
 
+    /**
+     * @param EntityLevelChangeEvent $event
+     */
     public function onLevelChange(EntityLevelChangeEvent $event) {
         $entity = $event->getEntity();
         if ($entity instanceof Player) {
@@ -23,14 +26,20 @@ class PlayerEventListener implements Listener {
         }
     }
 
-
+    /**
+     * @param PlayerRespawnEvent $event
+     */
     public function onRespawn(PlayerRespawnEvent $event) {
         $this->plugin->checkPlayer($event->getPlayer());
     }
 
-
+    /**
+     * @param PlayerQuitEvent $event
+     * @ignoreCancelled true
+     */
     public function onQuit(PlayerQuitEvent $event) {
         $this->plugin->checkPlayer($event->getPlayer());
     }
 
 }
+
