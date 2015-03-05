@@ -1,6 +1,6 @@
 name: WorldGM
 main: WorldGM\WorldGM
-version: 2.0
+version: 3.0
 api: [1.10.0]
 load: POSTWORLD
 author: Exxarion
@@ -9,7 +9,7 @@ website: http://aplus-craft.tk
 commands:
  wgm:
   description: Main Command.
-  usage: "/wgm set <gamemode> (world) -OR- /wgm <include/exclude> <player>"
+  usage: "/wgm set <gamemode> (world)\n -OR-\n /wgm <include/exclude> <player>"
   permission: worldgm.command.wgm
 permissions:
  worldgm.command.wgm:
