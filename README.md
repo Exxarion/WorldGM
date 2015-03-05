@@ -3,7 +3,7 @@
 
 
 </br>
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Exxarion/WorldGM?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+<center>[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Exxarion/WorldGM?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 </br>
 
 
@@ -17,7 +17,7 @@ Commands/Permissions:
 
 Command  | Description | Permission
 ------------- | ------------- | -------------
-/wgm  | Base command | wgm.command
+/wgm  | Base command | wgm.use
 /wgm set <world> <gamemode>  | Sets the gamemode for the world
 /wgm exclude <player> | Excludes the player from gamemode changes
 /wgm include <player> | Includes the player in gamemode changes
