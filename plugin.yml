@@ -12,6 +12,6 @@ commands:
   usage: "/wgm set <gamemode> (world)\n -OR-\n /wgm <include/exclude> <player>"
   permission: worldgm.command.wgm
 permissions:
- worldgm.command.wgm:
+ worldgm.use:
   description: "Allows the user to set world gamemodes"
   default: op
