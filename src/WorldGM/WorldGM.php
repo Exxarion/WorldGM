@@ -22,6 +22,7 @@ class WorldGM extends PluginBase {
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
 
+
         $this->saveDefaultConfig();
         $this->reloadConfig();
     }
@@ -129,7 +130,7 @@ class WorldGM extends PluginBase {
                 return "[WorldGM] Please specify a gamemode\n [Survival, Creative, or Adventure]";
             }
         } else {
-            return "Usage: /wgm set <gamemode> (world)";
+            return "Usage: /wgm set <gamemode>";
         }
 
 
