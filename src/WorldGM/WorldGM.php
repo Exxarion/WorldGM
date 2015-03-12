@@ -26,12 +26,6 @@ class WorldGM extends PluginBase {
         $this->reloadConfig();
     }
 
-     public function onCommand(CommandSender $p,Command $cmd,$label,array $args) {
-    if(!($p instanceof Player)) {
-      $p->sendMessage("Please use this command as a player");
-      return true;
-      
-    }
     public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch ($command->getName()) {
             case "wgm":
@@ -46,8 +40,9 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     default:
-                        $sender->sendMessage("\nWorldGM v3.0 by Exxarion\nUsage: /wgm set <0/1/2>\n/wgm <include/exclude> <player>\n");
+                        $sender->sendMessage("\nWorldGM v3.0 by Exxarion\nUsage: /wgm set <0/1/2>\n/wgm <include/exclude> <player>\n*Must be run as a player*");
                         return true;
+                        
                 }
             default:
                 return false;
