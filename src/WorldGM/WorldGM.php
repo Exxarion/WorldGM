@@ -21,18 +21,17 @@ class WorldGM extends PluginBase {
 
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
-        
-     public function onCommand(CommandSender $p,Command $cmd,$label,array $args) {
-    if(!($p instanceof Player)) {
-      $p->sendMessage("Please use this command as a player");
-      return true;
-
-
-
+    
         $this->saveDefaultConfig();
         $this->reloadConfig();
     }
 
+     public function onCommand(CommandSender $p,Command $cmd,$label,array $args) {
+    if(!($p instanceof Player)) {
+      $p->sendMessage("Please use this command as a player");
+      return true;
+      
+    }
     public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch ($command->getName()) {
             case "wgm":
