@@ -121,7 +121,7 @@ class WorldGM extends PluginBase {
                 }
             } elseif (($mode = Server::getGamemodeFromString($params[1])) !== -1 && $params[0] != "none") {
 
-                if ($this->getServer()->getLevel($params[0]) !== null) {
+                if ($this->getServer()->getLevel($params[0]) == null) {
                     $world = $params[0];
                 } else {
                     return "[WorldGM] That world does not exist";
