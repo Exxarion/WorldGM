@@ -10,15 +10,9 @@ use pocketmine\Player;
 
 class WorldGM extends PluginBase {
 
-    private $utilities;
-
     const CONFIG_EXCLUDED = "excluded";
     const CONFIG_WORLDS = "worlds";
-
-    public function __construct() {
-        $this->utilities = new Utilities($this);
-    }
-
+    
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
     
@@ -40,7 +34,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     default:
-                        $sender->sendMessage("\nWorldGM v3.0 by Exxarion\nUsage: /wgm set <0/1/2>\n/wgm <include/exclude> <player>\n*Must be run as a player*");
+                        $sender->sendMessage("\nWorldGM v3.0 by Exxarion\nUsage: /wgm set <0/1/2> (world)\n/wgm <include/exclude> <player>");
                         return true;
                         
                 }
@@ -108,13 +102,13 @@ class WorldGM extends PluginBase {
                     return "[WorldGM] Please specify a world";
                 }
             } else {
-                return "[WorldGM] Please specify a gamemode\n [Survival, Creative, or Adventure]";
+                return "[WorldGM] Please specify a gamemode\n [Survival = 0/Creative = 1/Adventure = 2]";
             }
         } elseif (count($params) == 2) {
 
             if (($mode = Server::getGamemodeFromString($params[0])) !== -1 && $params[0] != "none") {
 
-                if ($this->getServer()->getLevel($params[1]) !== null) {
+                if ($this->getServer()->getLevel($params[1]) == null) {
                     $world = $params[1];
                 } else {
                     return "[WorldGM] That world does not exist.";
@@ -127,10 +121,10 @@ class WorldGM extends PluginBase {
                     return "[WorldGM] That world does not exist";
                 }
             } else {
-                return "[WorldGM] Please specify a gamemode\n [Survival, Creative, or Adventure]";
+                return "[WorldGM] Please specify a gamemode\n [Survival = 0/Creative = 1/Adventure = 2]";
             }
         } else {
-            return "Usage: /wgm set <gamemode>";
+            return "Usage: /wgm set <gamemode> (world)";
         }
 
 
