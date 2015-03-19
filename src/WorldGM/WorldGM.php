@@ -7,6 +7,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\Player;
+use pocketmine\utils\TextFormat;
 
 class WorldGM extends PluginBase {
 
@@ -15,6 +16,7 @@ class WorldGM extends PluginBase {
     
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
+        $this->getLogger()->info(TextFormat::GREEN."[WorldGM] Loading...\n\n\n\n\n\n...Loaded!");
     
         $this->saveDefaultConfig();
         $this->reloadConfig();
@@ -34,7 +36,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     default:
-                        $sender->sendMessage("\nWorldGM v3.0 by Exxarion\nUsage: /wgm set <0/1/2> (world)\n/wgm <include/exclude> <player>");
+                        $sender->sendMessage(TextFormat::RED."\nWorldGM v3.0 by Exxarion\nUsage: /wgm set <0/1/2> (world)\n/wgm <include/exclude> <player>");
                         return true;
                         
                 }
