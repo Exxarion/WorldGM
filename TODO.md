@@ -6,6 +6,7 @@
 * [x] debugging
 * [ ] Remove Bad Practice
 * [ ] Add Enable/Disable messages
-* [ ] Add functionality to set gamemodes while in a different world
-* [ ] Basic clean up
-* [ ] Add console support
+* [x] Add functionality to set gamemodes while in a different world
+* [x] Basic clean up
+* [x] Add console support
+* [ ] Fix bugs
