@@ -16,11 +16,16 @@ class WorldGM extends PluginBase {
     
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
-        $this->getLogger()->info(TextFormat::GREEN."[WorldGM] Loading...\n\n\n\n\n\n...Loaded!");
-    
+        $this->getLogger()->info(TextFormat::GREEN."[WorldGM] Loaded and Enabled successfully!");
+
         $this->saveDefaultConfig();
         $this->reloadConfig();
     }
+    
+     public function onDisable() {
+        $this->getLogger()->info(TextFormat::BLUE."[WorldGM] Unloaded and Disabled successfully");
+        
+     }
 
     public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch ($command->getName()) {
