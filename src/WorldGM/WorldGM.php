@@ -86,7 +86,7 @@ class WorldGM extends PluginBase {
             $gamemodeTo = false;
         } else if (($gamemodeTo = Server::getGamemodeFromString($worldGamemode)) == -1) {
             $this->getLogger()->warning($worldGamemode . ' is not a valid gamemode! (WorldGM/config.yml)\n Using the default gamemode instead');
-            $gamemodeTo = Server::getDefaultGamemode();
+            $gamemodeTo = $worldGamemode;
         }
         
         $gamemodeNeedsChanged = $player->getGamemode() !== ($gamemodeTo);
