@@ -16,14 +16,16 @@ class WorldGM extends PluginBase {
     
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
-        $this->getLogger()->info(TextFormat::GREEN."All files have been loaded successfully");
+        $this->getLogger()->info(TextFormat::GREEN."Plugin loaded");
+        $this->getLogger()->notice(TextFormat::YELLOW."This plugin is very experimental. Please report any issues you encounter at http://github.com/Exxarion/WorldGM/issues");
+
 
         $this->saveDefaultConfig();
         $this->reloadConfig();
     }
     
      public function onDisable() {
-        $this->getLogger()->info(TextFormat::BLUE."All files have been unloaded and disabled");
+        $this->getLogger()->info(TextFormat::BLUE."Plugin Unloaded");
         
      }
 
@@ -41,7 +43,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     default:
-                        $sender->sendMessage(TextFormat::YELLOW."WorldGM v3.0 by Exxarion"TextFormat::RED."\nUsage: /wgm set <0/1/2> (world)"TextFormat::RED."\n/wgm <include/exclude> <player>");
+                        $sender->sendMessage("-------------------\nWorldGM - Version 3.0\nSet Different gamemodes for different worlds\nUsages:\n/wgm set <0/1/2> <world>\n/wgm <include/exclude> <player>\n- Created by Exxarion\n------------------");
                         return true;
                         
                 }
@@ -67,7 +69,6 @@ class WorldGM extends PluginBase {
     }
     
     public function checkPlayer($player) {
-
         if (is_string($player)) {
             $player = $this->getServer()->getPlayerExact($player);
         }
@@ -82,11 +83,11 @@ class WorldGM extends PluginBase {
         $isExcluded = in_array(strtolower($player->getName()), array_map('strtolower', $this->getConfig()->get(WorldGM::CONFIG_EXCLUDED)));
         $worldGamemode = Utilities::getWorldGamemode($this->getConfig(), $world);
         
-        if ($worldGamemode == "none") {
+        if ($worldGamemode == "false") {
             $gamemodeTo = false;
         } else if (($gamemodeTo = Server::getGamemodeFromString($worldGamemode)) == -1) {
-            $this->getLogger()->warning($worldGamemode . ' is not a valid gamemode! (WorldGM/config.yml)\n Using the default gamemode instead');
-            $gamemodeTo = $config->get(WorldGM::CONFIG_WORLDS)[$world];
+            $this->getLogger()->warning($worldGamemode . ' is not a gamemode, until this is fixed, this plugin will use your default gamemode instead.');
+            $gamemodeTo = Server::getDefaultGamemode();
         }
         
         $gamemodeNeedsChanged = $player->getGamemode() !== ($gamemodeTo);
@@ -106,10 +107,10 @@ class WorldGM extends PluginBase {
                 if ($sender instanceof Player) {
                     $world = $sender->getLevel()->getName();
                 } else {
-                    return "[WorldGM] Please specify a world";
+                    return TextFormat::YELLOW."[WorldGM] Please specify a world";
                 }
             } else {
-                return "[WorldGM] Please specify a gamemode\n [Survival = 0/Creative = 1/Adventure = 2]";
+                return TextFormat::YELLOW."[WorldGM] Please specify a gamemode\n [Survival = 0/Creative = 1/Adventure = 2]";
             }
         } elseif (count($params) == 2) {
 
@@ -118,17 +119,17 @@ class WorldGM extends PluginBase {
                 if ($this->getServer()->getLevel($params[1]) == null) {
                     $world = $params[1];
                 } else {
-                    return "[WorldGM] That world does not exist.";
+                    return TextFormat::RED."[WorldGM] That world does not exist.";
                 }
             } elseif (($mode = Server::getGamemodeFromString($params[1])) !== -1 && $params[0] != "none") {
 
                 if ($this->getServer()->getLevel($params[0]) == null) {
                     $world = $params[0];
                 } else {
-                    return "[WorldGM] That world does not exist";
+                    return "TextFormat::RED.[WorldGM] That world does not exist";
                 }
             } else {
-                return "[WorldGM] Please specify a gamemode\n [Survival = 0/Creative = 1/Adventure = 2]";
+                return TextFormat::RED."[WorldGM] Please specify a gamemode\n [Survival = 0/Creative = 1/Adventure = 2]";
             }
         } else {
             return "Usage: /wgm set <gamemode> (world)";
@@ -137,7 +138,7 @@ class WorldGM extends PluginBase {
 
         Utilities::setWorldGamemode($this->getConfig(), $world, $mode);
         $this->checkAllPlayers($world);
-        return "[WorldGM] $world's gamemode has been set to $mode.";
+        return TextFormat::GREEN."[WorldGM] The gamemode of $world has been set to $mode.\nA restart is required for changes to go into effect";
     }
 
     public function excludePlayerCmd($sender, $params) {
