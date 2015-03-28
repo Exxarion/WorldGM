@@ -161,9 +161,9 @@ class WorldGM extends PluginBase {
         }
         if (null !== $player = $this->getServer()->getPlayer($playerpar)) {
             if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
-                return TextFormat::GREEN."[WorldGM]" $player->getName() . " will not be affected by world gamemode changes";
+                return TextFormat::GREEN.$player->getName() . " will not be affected by world gamemode changes";
             } else {
-                return TextFormat::YELLOW."[WorldGM]" $player->getName() . " has already been excluded";
+                return TextFormat::YELLOW.$player->getName() . " has already been excluded";
             }
         } else {
             return TextFormat::RED."[WorldGM] $playerpar is currently offline";
@@ -178,10 +178,10 @@ class WorldGM extends PluginBase {
         if (null !== $player = $this->getServer()->getPlayer($playerpar)) {
             if (Utilities::removeprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
                 $this->checkPlayer($player);
-                return TextFormat::GREEN."[WorldGM]" $player->getName() . " will be affected by world gamemode changes";
+                return TextFormat::GREEN.$player->getName() . " will be affected by world gamemode changes";
                 
             } else {
-                return TextFormat::YELLOW."[WorldGM]" $player->getName() . " has already been included";
+                return TextFormat::YELLOW.$player->getName() . " has already been included";
             }
         } else {
             return TextFormat::RED."[WorldGM] $playerpar is currently offline";
