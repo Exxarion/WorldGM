@@ -16,14 +16,14 @@ class WorldGM extends PluginBase {
     
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
-        $this->getLogger()->info(TextFormat::GREEN."[WorldGM] Loaded and Enabled successfully!");
+        $this->getLogger()->info(TextFormat::GREEN."All files have been loaded successfully");
 
         $this->saveDefaultConfig();
         $this->reloadConfig();
     }
     
      public function onDisable() {
-        $this->getLogger()->info(TextFormat::BLUE."[WorldGM] Unloaded and Disabled successfully");
+        $this->getLogger()->info(TextFormat::BLUE."All files have been unloaded and disabled");
         
      }
 
@@ -41,7 +41,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     default:
-                        $sender->sendMessage(TextFormat::RED."\nWorldGM v3.0 by Exxarion\nUsage: /wgm set <0/1/2> (world)\n/wgm <include/exclude> <player>");
+                        $sender->sendMessage(TextFormat::YELLOW."WorldGM v3.0 by Exxarion"TextFormat::RED."\nUsage: /wgm set <0/1/2> (world)"TextFormat::RED."\n/wgm <include/exclude> <player>");
                         return true;
                         
                 }
