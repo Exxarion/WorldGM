@@ -32,8 +32,6 @@ class WorldGM extends PluginBase {
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
         $this->getLogger()->info(TextFormat::GREEN."Loaded and enabled successfully");
-        $this->getLogger()->notice(TextFormat::YELLOW."This plugin is very experimental. Please report any issues you encounter at http://github.com/Exxarion/WorldGM/issues");
-
 
         $this->saveDefaultConfig();
         $this->reloadConfig();
