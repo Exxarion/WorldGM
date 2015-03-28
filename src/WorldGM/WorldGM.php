@@ -56,7 +56,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     default:
-                        $sender->sendMessage("-------------------\nWorldGM - Version 3.0\nSet Different gamemodes for different worlds\nUsages:\n/wgm set <0/1/2> <world>\n/wgm <include/exclude> <player>\n- Created by Exxarion\n-------------------");
+                        $sender->sendMessage("-------------------\nWorldGM - Version 4.0\nSet Different gamemodes for different worlds\nUsages:\n/wgm set <0/1/2> <world>\n/wgm <include/exclude> <player>\n- Created by Exxarion\n-------------------");
                         return true;
                         
                 }
