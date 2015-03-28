@@ -6,7 +6,9 @@
 #     \/  \/ \___/|_|  |_|\__,_|\_____|_|  |_|
 #
 #
-#Plugin Config file
+#Plugin Config file - Empty
+#Once the plugin is set, everything beginning in a # will disappear.
+#
 #
 excluded: [] #These are players who are not affected by World Gamemodes.
 worlds: [] #Worlds that are set by the plugin will appear here.
