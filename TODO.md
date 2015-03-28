@@ -4,7 +4,7 @@
 * [x] Implement listeners
 * [x] Add exlude/include
 * [x] debugging
-* [ ] Remove Bad Practice
+* [x] Remove Bad Practice
 * [x] Add Enable/Disable messages
 * [x] Add functionality to set gamemodes while in a different world
 * [x] Basic clean up
