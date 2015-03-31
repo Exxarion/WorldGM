@@ -21,4 +21,5 @@ Command  | Description | Permission
 /wgm set <gamemode>  | Sets the gamemode for the world
 /wgm exclude <player> | Excludes the player from gamemode changes
 /wgm include <player> | Includes the player in gamemode changes
+/wgm version | Check the version of the plugin
 
