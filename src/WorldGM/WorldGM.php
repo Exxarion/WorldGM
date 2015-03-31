@@ -58,6 +58,9 @@ class WorldGM extends PluginBase {
                     case "version":
                         $sender->sendMessage("Your copy of WorldGM is running on v4.1\n>> Check for updates by going here:\nhttp://github.com/Exxarion/WorldGM/releases");
                         return true;
+                    case "check":
+                        $sender->sendMessage($this->checkGmCmd($sender, $args));
+                        return true;
                     default:
                         $sender->sendMessage("-------------------\nWorldGM - Version 4.1\nSet Different gamemodes for different worlds\nUsages:\n/wgm set <0/1/2> <world>\n/wgm <include/exclude> <player>\n/wgm version\n- Created by Exxarion\n-------------------");
                         return true;
@@ -188,6 +191,25 @@ class WorldGM extends PluginBase {
             return TextFormat::RED."[WorldGM] $playerpar is currently offline";
         }
     }
-
+    //THIS IS IN TESTING. NOT FOR PRODUCTION!
+    public function checkGmCmd($sender, $params) {
+     $checkedplyr = $this->getServer()->getPlayer($params[1]);
+     if($checkedplyr !== null){
+      if($checkedplyr->isSurvival()){
+								$issuer->sendMessage(TextFormat::AQUA."[WorldGM] Gamemode of $checkedplyr: ".TextFormat::GREEN."Survival");
+								return true;
+							}else if($checkedplyr->isCreative()){
+								$issuer->sendMessage(TextFormat::GREEN."[WorldGM] Gamemode of $checkedplyr: ".TextFormat::YELLOW."Creative");
+								return true;
+							}else if($checkedplyr->isAdventure()){
+					    		        $issuer->sendMessage(TextFormat::GREEN."[WorldGM] Gamemode of $checkedplyr: ".TextFormat::BLUE."Adventure");
+					   return true;
+							}
+                   return true;	
+				       	}else{
+				         $issuer->sendMessage(TextFormat::YELLOW."[WorldGM] Usage: /wgm check <player>");
+						return true;
+				    	}
+				}
 }
 
