@@ -12,7 +12,7 @@ class PlayerEventListener implements Listener {
 
     private $plugin;
 
-    public static function __construct(WorldGM $plugin) {
+    public function __construct(WorldGM $plugin) {
         $this->plugin = $plugin;
     }
 
