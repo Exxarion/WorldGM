@@ -45,6 +45,8 @@ class WorldGM extends PluginBase {
     public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch ($command->getName()) {
             case "wgm":
+            case "worldgm":
+            case "w":
                 switch (array_shift($args)) {
                     case "set":
                         $sender->sendMessage($this->setWorldCmd($sender, $args));
@@ -55,8 +57,11 @@ class WorldGM extends PluginBase {
                     case "include":
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
+                    case "version":
+                        $sender->sendMessage("Your copy of WorldGM is running on v4.1\n>> Check for updates by going here:\nhttp://github.com/Exxarion/WorldGM/releases");
+                        return true;
                     default:
-                        $sender->sendMessage("-------------------\nWorldGM - Version 4.0\nSet Different gamemodes for different worlds\nUsages:\n/wgm set <0/1/2> <world>\n/wgm <include/exclude> <player>\n- Created by Exxarion\n-------------------");
+                        $sender->sendMessage("-------------------\nWorldGM - Version 4.1\nSet Different gamemodes for different worlds\nUsages:\n/wgm set <0/1/2> <world>\n/wgm <include/exclude> <player>\n/wgm version\n- Created by Exxarion\n-------------------");
                         return true;
                         
                 }
