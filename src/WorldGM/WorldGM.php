@@ -45,8 +45,6 @@ class WorldGM extends PluginBase {
     public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch ($command->getName()) {
             case "wgm":
-            case "worldgm":
-            case "w":
                 switch (array_shift($args)) {
                     case "set":
                         $sender->sendMessage($this->setWorldCmd($sender, $args));
