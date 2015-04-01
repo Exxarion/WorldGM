@@ -191,25 +191,19 @@ class WorldGM extends PluginBase {
             return TextFormat::RED."[WorldGM] $playerpar is currently offline";
         }
     }
-    //THIS IS IN TESTING, Unless you want to crash your server, do not enable this!
-    public function checkGmCmd($sender,$playerpar) {
-      /* if($playerpar !== null){
-      if($playerpar->isSurvival()){
-		$sender->sendMessage(TextFormat::AQUA."[WorldGM] Gamemode of $playerpar: ".TextFormat::GREEN."Survival");
-			return true;
-		}else if($playerpar->isCreative()){
-		$sender->sendMessage(TextFormat::GREEN."[WorldGM] Gamemode of $playerpar: ".TextFormat::YELLOW."Creative");
-			return true;
-		}else if($playerpar->isAdventure()){
-		$sender->sendMessage(TextFormat::GREEN."[WorldGM] Gamemode of $playerpar: ".TextFormat::BLUE."Adventure");
-			return true;
-		}
-                   	return true;	
-		}else{
-		 $sender->sendMessage(TextFormat::YELLOW."[WorldGM] Usage: /wgm check <player>");
-			return true; */
-		$sender->sendMessage(TextFormat::DARK_RED."[WorldGM] Coming soon");
-                        return true;
+
+    public function checkGmCmd($sender) {
+      $sender->sendMessage(TextFormat::AQUA."[WorldGM] Online Player Gamemodes:");
+            foreach($sender->getServer()->getOnlinePlayers() as $allplayers){
+                if($allplayers->isCreative()){
+                    $sender->sendMessage(TextFormat::DARK_GREEN.$allplayers->getName()."- ".TextFormat::YELLOW."Creative");
+                }
+                elseif($allplayers->isSurvival()){
+                    $sender->sendMessage(TextFormat::DARK_GREEN.$allplayers->getName()."- ".TextFormat::GREEN."Survival");
+                }
+                elseif($allplayers->isAdventure()){
+                    $sender->sendMessage(TextFormat::DARK_GREEN.$allplayers->getName()."- ".TextFormat::BLUE."Adventure");
+                }
 		}
 	}
 }
