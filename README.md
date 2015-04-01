@@ -28,4 +28,5 @@ Command  | Description | Permission
 /wgm exclude <player> | Excludes the player from gamemode changes
 /wgm include <player> | Includes the player in gamemode changes
 /wgm version | Check the version of the plugin
+/wgm check | Checks the gamemode of all players online
 
