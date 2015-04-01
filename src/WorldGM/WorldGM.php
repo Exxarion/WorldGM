@@ -62,7 +62,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->checkGmCmd($sender, $args));
                         return true;
                     default:
-                        $sender->sendMessage("-------------------\nWorldGM - Version 4.1\nSet Different gamemodes for different worlds\nUsages:\n/wgm set <0/1/2> <world>\n/wgm <include/exclude> <player>\n/wgm version\n- Created by Exxarion\n-------------------");
+                        $sender->sendMessage("-------------------\nWorldGM - Version 4.1\nSet Different gamemodes for different worlds\nUsages:\n/wgm set <0/1/2> <world>\n/wgm <include/exclude> <player>\n/wgm version\n/wgm check\n- Created by Exxarion\n-------------------");
                         return true;
                         
                 }
@@ -191,25 +191,26 @@ class WorldGM extends PluginBase {
             return TextFormat::RED."[WorldGM] $playerpar is currently offline";
         }
     }
-    //THIS IS IN TESTING. NOT FOR PRODUCTION!
-    public function checkGmCmd($sender, $params) {
-     $checkedplyr = $this->getServer()->getPlayer($params[1]);
-     if($checkedplyr !== null){
-      if($checkedplyr->isSurvival()){
-								$issuer->sendMessage(TextFormat::AQUA."[WorldGM] Gamemode of $checkedplyr: ".TextFormat::GREEN."Survival");
-								return true;
-							}else if($checkedplyr->isCreative()){
-								$issuer->sendMessage(TextFormat::GREEN."[WorldGM] Gamemode of $checkedplyr: ".TextFormat::YELLOW."Creative");
-								return true;
-							}else if($checkedplyr->isAdventure()){
-					    		        $issuer->sendMessage(TextFormat::GREEN."[WorldGM] Gamemode of $checkedplyr: ".TextFormat::BLUE."Adventure");
-					   return true;
-							}
-                   return true;	
-				       	}else{
-				         $issuer->sendMessage(TextFormat::YELLOW."[WorldGM] Usage: /wgm check <player>");
-						return true;
-				    	}
-				}
+    //THIS IS IN TESTING, Unless you want to crash your server, do not enable this!
+    public function checkGmCmd($sender,$playerpar) {
+      /* if($playerpar !== null){
+      if($playerpar->isSurvival()){
+		$sender->sendMessage(TextFormat::AQUA."[WorldGM] Gamemode of $playerpar: ".TextFormat::GREEN."Survival");
+			return true;
+		}else if($playerpar->isCreative()){
+		$sender->sendMessage(TextFormat::GREEN."[WorldGM] Gamemode of $playerpar: ".TextFormat::YELLOW."Creative");
+			return true;
+		}else if($playerpar->isAdventure()){
+		$sender->sendMessage(TextFormat::GREEN."[WorldGM] Gamemode of $playerpar: ".TextFormat::BLUE."Adventure");
+			return true;
+		}
+                   	return true;	
+		}else{
+		 $sender->sendMessage(TextFormat::YELLOW."[WorldGM] Usage: /wgm check <player>");
+			return true; */
+		$sender->sendMessage(TextFormat::DARK_RED."[WorldGM] Coming soon");
+                        return true;
+		}
+	}
 }
-
+//Plugin created by Exxarion. Registered under GNU GENERAL PUBLIC LICENSE. Do not distribute!
