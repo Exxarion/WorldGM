@@ -9,7 +9,7 @@ website: http://aplus-craft.tk
 commands:
  wgm:
   description: Set different gamemodes, for different worlds.
-  usage: "/wgm set <gamemode> (world)\n/wgm <include/exclude> <player>"
+  usage: "/wgm set <gamemode> (world)\n/wgm <include/exclude> <player>\n/wgm check"
   permission: worldgm.use
 permissions:
  worldgm.use:
