@@ -59,7 +59,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage("Your copy of WorldGM is running on v4.1\n>> Check for updates by going here:\nhttp://github.com/Exxarion/WorldGM/releases");
                         return true;
                     case "check":
-                        $sender->sendMessage($this->checkGmCmd($sender, $args));
+                        $sender->sendMessage($this->checkGmCmd($sender));
                         return true;
                     default:
                         $sender->sendMessage("-------------------\nWorldGM - Version 4.1\nSet Different gamemodes for different worlds\nUsages:\n/wgm set <0/1/2> <world>\n/wgm <include/exclude> <player>\n/wgm version\n/wgm check\n- Created by Exxarion\n-------------------");
@@ -195,14 +195,15 @@ class WorldGM extends PluginBase {
     public function checkGmCmd($sender) {
       $sender->sendMessage(TextFormat::AQUA."[WorldGM] Online Player Gamemodes:");
             foreach($sender->getServer()->getOnlinePlayers() as $allplayers){
+            	$world = $allplayers->getLevel()->getName();
                 if($allplayers->isCreative()){
-                    $sender->sendMessage(TextFormat::DARK_GREEN.$allplayers->getName()."- ".TextFormat::YELLOW."Creative");
+                    $sender->sendMessage(TextFormat::DARK_GREEN.$allplayers->getName()." is in gamemode ".TextFormat::YELLOW."Creative".TextFormat::GREEN." while in world, $world");
                 }
                 elseif($allplayers->isSurvival()){
-                    $sender->sendMessage(TextFormat::DARK_GREEN.$allplayers->getName()."- ".TextFormat::GREEN."Survival");
+                    $sender->sendMessage(TextFormat::DARK_GREEN.$allplayers->getName()." is in gamemode ".TextFormat::GREEN."Survival".TextFormat::GREEN." while in world, $world");
                 }
                 elseif($allplayers->isAdventure()){
-                    $sender->sendMessage(TextFormat::DARK_GREEN.$allplayers->getName()."- ".TextFormat::BLUE."Adventure");
+                    $sender->sendMessage(TextFormat::DARK_GREEN.$allplayers->getName()." is in gamemode ".TextFormat::BLUE."Adventure".TextFormat::GREEN." while in world, $world");
                 }
 		}
 	}
