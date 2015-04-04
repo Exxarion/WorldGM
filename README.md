@@ -1,6 +1,6 @@
 <p align="center"> <img src="http://i1279.photobucket.com/albums/y523/textcraft/Mar%202015%20-%201/db3512f64aadd5bf2a5ff189ed6dbea3a8e50bf117000be50c51eeab785ea68c5568b351287813f380008ed3f48617b6b32320f7c2983f813887e35d312ca17c4fbd7d4ab594_zps198b2c53.png" border="0" alt="WorldGM logo" title="WorldGM logo">
 
-<p align="center"> <a class="callToAction" href="https://github.com/Exxarion/WorldGM/releases/download/v5.0/WorldGM_v5.0.phar"><span>Stable</span></a> | <a class="callToAction" href="https://github.com/Exxarion/WorldGM/archive/master.zip"><span>Nightly Build (.zip)</span></a> | <a class="callToAction" href="https://github.com/Exxarion/WorldGM/archive/v5.0.zip"><span>Source (Stable)</span></a>
+<p align="center"> <a class="callToAction" href="https://github.com/Exxarion/WorldGM/releases/download/v5.0/WorldGM_v5.phar"><span>Stable</span></a> | <a class="callToAction" href="https://github.com/Exxarion/WorldGM/archive/master.zip"><span>Nightly Build (.zip)</span></a> | <a class="callToAction" href="https://github.com/Exxarion/WorldGM/archive/v5.0.zip"><span>Source (Stable)</span></a>
 
 </br>
 <p align="center">[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Exxarion/WorldGM?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
