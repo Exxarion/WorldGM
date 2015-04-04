@@ -1,6 +1,6 @@
 name: WorldGM
 main: WorldGM\WorldGM
-version: 4.1
+version: 5.0
 api: [1.10.0]
 load: POSTWORLD
 author: Exxarion
@@ -9,7 +9,7 @@ website: http://aplus-craft.tk
 commands:
  wgm:
   description: Set different gamemodes, for different worlds.
-  usage: "/wgm set <gamemode> (world)\n/wgm <include/exclude> <player>\n/wgm check"
+  usage: "/wgm set <gamemode> (world)\n/wgm <include/exclude> <player>\n/wgm version\n/wgm check"
   permission: worldgm.use
 permissions:
  worldgm.use:
