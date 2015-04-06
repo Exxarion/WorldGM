@@ -61,8 +61,11 @@ class WorldGM extends PluginBase {
                     case "check":
                         $sender->sendMessage($this->checkGmCmd($sender));
                         return true;
+                    case "gm":
+                        $sender->sendMessage(TextFormat::GREEN."Survival = 0\n".TextFormat::YELLOW."Creative = 1\n".TextFormat::AQUA."Adventure = 2");
+                        return true;
                     default:
-                        $sender->sendMessage(TextFormat::YELLOW."-------------------\n".TextFormat::GREEN."WorldGM - Version 5.0\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."-------------------");
+                        $sender->sendMessage(TextFormat::YELLOW."-------------------\n".TextFormat::GREEN."WorldGM - Version 5.0\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::AQUA."/wgm gm\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."-------------------");
                         return true;
                         
                 }
@@ -112,6 +115,7 @@ class WorldGM extends PluginBase {
         if (!$isExcluded && $gmneedschanging) {
 
             $player->setGamemode($gamemodeTo);
+            $player->sendMessage(TextFormat::GREEN."[WorldGM] Your gamemode has been changed to $gamemodeTo");
         } else {
             return false;
         }
@@ -166,6 +170,10 @@ class WorldGM extends PluginBase {
         if (null !== $player = $this->getServer()->getPlayer($playerpar)) {
             if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
                 return TextFormat::GREEN.$player->getName() . " will not be affected by world gamemode changes";
+            }
+        if ($player->isOP()){
+            if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
+            }
             } else {
                 return TextFormat::YELLOW.$player->getName() . " has already been excluded";
             }
