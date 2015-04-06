@@ -56,7 +56,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     case "version":
-                        $sender->sendMessage(TextFormat::DARK_GREEN."Your copy of WorldGM is running on v5.0\n".TextFormat::YELLOW.">> Check for updates by going here:\n".TextFormat::GOLD."http://github.com/Exxarion/WorldGM/releases");
+                        $sender->sendMessage(TextFormat::DARK_GREEN."Your copy of WorldGM is running on v6.0\n".TextFormat::YELLOW.">> Check for updates by going here:\n".TextFormat::GOLD."http://github.com/Exxarion/WorldGM/releases");
                         return true;
                     case "check":
                         $sender->sendMessage($this->checkGmCmd($sender));
@@ -65,7 +65,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage(TextFormat::GREEN."Survival = 0\n".TextFormat::YELLOW."Creative = 1\n".TextFormat::AQUA."Adventure = 2");
                         return true;
                     default:
-                        $sender->sendMessage(TextFormat::YELLOW."-------------------\n".TextFormat::GREEN."WorldGM - Version 5.0\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::AQUA."/wgm gm\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."-------------------");
+                        $sender->sendMessage(TextFormat::YELLOW."-------------------\n".TextFormat::GREEN."WorldGM - Version 6.0\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::AQUA."/wgm gm\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."-------------------");
                         return true;
                         
                 }
@@ -171,7 +171,7 @@ class WorldGM extends PluginBase {
             if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
                 return TextFormat::GREEN.$player->getName() . " will not be affected by world gamemode changes";
             }
-        if ($player->isOP()){
+        if ($player->isOP()){ //Auto-excludes OPs. In testing.
             if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
             }
             } else {
