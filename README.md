@@ -29,4 +29,5 @@ Command  | Description | Permission
 /wgm include <player> | Includes the player in gamemode changes
 /wgm version | Check the version of the plugin
 /wgm check | Checks the gamemode and the world of all players online
+/wgm gm | Display a list of Gamemodes
 
