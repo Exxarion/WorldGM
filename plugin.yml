@@ -1,6 +1,6 @@
 name: WorldGM
 main: WorldGM\WorldGM
-version: 6.0
+version: 6.1
 api: [1.10.0]
 load: POSTWORLD
 author: Exxarion
