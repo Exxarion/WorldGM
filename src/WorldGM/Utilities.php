@@ -26,8 +26,7 @@ class Utilities {
 
     public static function getWorldGamemode(Config $config, $world) {
         return (isset($config->get(WorldGM::CONFIG_WORLDS)[$world])) ? $config->get(WorldGM::CONFIG_WORLDS)[$world] : Server::getInstance()->getDefaultGamemode(); //Yes, bad practice, but it is the only way to get it to work properly. Do not kill me.   
-    }
-    }
+      }
 
     public static function setWorldGamemode(Config $config, $world, $gamemode) {
         $worlds = $config->get(WorldGM::CONFIG_WORLDS);
