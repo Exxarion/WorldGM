@@ -8,6 +8,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
+use pocketmine\utils\Utils;
 /*
  __        __         _     _  ____ __  __  
  \ \      / /__  _ __| | __| |/ ___|  \/  | 
@@ -56,7 +57,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     case "version":
-                        $sender->sendMessage(TextFormat::DARK_GREEN."Your copy of WorldGM is running on v6.1\n".TextFormat::YELLOW.">> Check for updates by going here:\n".TextFormat::GOLD."http://github.com/Exxarion/WorldGM/releases");
+                        $sender->sendMessage(TextFormat::DARK_GREEN."Your copy of WorldGM is running on v6.1\n".TextFormat::YELLOW.">> Check for updates by running this command:\n".TextFormat::GOLD."/wgm update");
                         return true;
                     case "check":
                         $sender->sendMessage($this->checkGmCmd($sender));
@@ -64,8 +65,11 @@ class WorldGM extends PluginBase {
                     case "gm":
                         $sender->sendMessage(TextFormat::GREEN."Survival = 0\n".TextFormat::YELLOW."Creative = 1\n".TextFormat::AQUA."Adventure = 2");
                         return true;
+                    case "update":
+                    	$sender->sendMessage($this->updatePlugin($sender));
+                    	return true;
                     default:
-                        $sender->sendMessage(TextFormat::YELLOW."-------------------\n".TextFormat::GREEN."WorldGM - Version 6.1\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::AQUA."/wgm gm\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."-------------------");
+                        $sender->sendMessage(TextFormat::YELLOW."-------------------\n".TextFormat::GREEN."WorldGM - Version 6.1\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::AQUA."/wgm gm\n".TextFormat::AQUA."/wgm update\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."-------------------");
                         return true;
                         
                 }
@@ -199,6 +203,24 @@ class WorldGM extends PluginBase {
             return TextFormat::RED."[WorldGM] $playerpar is currently offline";
         }
     }
+    public function updatePlugin($sender) { //BETA
+    $this->getLogger()->info(TextFormat::GREEN."Now checking for plugin updates...");
+				$lst = Utils::getURL("https://raw.githubusercontent.com/Exxarion/WorldGM/master/plugin.yml");
+				
+				$dsc = \yaml_parse($lst);
+				
+				$description = $this->getDescription();
+				if(version_compare($description->getVersion(), $dsc["version"]) < 0){
+					$this->getLogger()->info(TextFormat::YELLOW."WorldGM v".$dsc["version"]." has been released. Please download the latest version!");
+				}else{
+					$this->getLogger()->info(TextFormat::GREEN."Your version is up-to-date!");
+				}
+				
+				if($dsc["author"] !== $description->getAuthors()[0]){
+					$this->getLogger()->info(TextFormat::DARK_RED."Sorry, but this plugin is modified and is not supported! Failed to check for updates");
+			}
+		}
+
 
     public function checkGmCmd($sender) {
       $sender->sendMessage(TextFormat::AQUA."[WorldGM] Online Player Gamemodes:");
