@@ -30,4 +30,5 @@ Command  | Description | Permission
 /wgm version | Check the version of the plugin
 /wgm check | Checks the gamemode and the world of all players online
 /wgm gm | Display a list of Gamemodes
+/wgm update | Check for updates
 
