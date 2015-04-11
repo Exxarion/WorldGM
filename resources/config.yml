@@ -18,3 +18,4 @@
 #
 excluded: [] #These are players who are not affected by World Gamemodes.
 worlds: [] #Worlds that are set by the plugin will appear here.
+excludeops: false #Auto Exclude server operators (BETA TESTING)
