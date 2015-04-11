@@ -29,6 +29,7 @@ class WorldGM extends PluginBase {
     
     const CONFIG_EXCLUDED = "excluded";
     const CONFIG_WORLDS = "worlds";
+    const CONFIG_AUTOEXCLUDE = "exludeops";
     
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
@@ -175,7 +176,7 @@ class WorldGM extends PluginBase {
             if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
                 return TextFormat::GREEN.$player->getName() . " will not be affected by world gamemode changes";
             }
-        if ($player->isOP()){ //Auto-excludes OPs. In testing.
+        if ($player->isOP() && $this->getConfig()->get(WorldGM::CONFIG_AUTOEXCLUDE == 'true')){ //Auto-excludes OPs. In testing and will not work yet.
             if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
             }
             } else {
