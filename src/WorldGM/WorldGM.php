@@ -176,8 +176,9 @@ class WorldGM extends PluginBase {
             if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
                 return TextFormat::GREEN.$player->getName() . " will not be affected by world gamemode changes";
             }
-        if ($player->isOP() && $this->getConfig()->get(WorldGM::CONFIG_AUTOEXCLUDE == 'true')){ //Auto-excludes OPs. In testing and will not work yet.
+        if ($player->isOP() && $this->getConfig()->get(WorldGM::CONFIG_AUTOEXCLUDE !== 'false')){ //Auto-excludes OPs. In testing and will not work yet.
             if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
+            	return true;
             }
             } else {
                 return TextFormat::YELLOW.$player->getName() . " has already been excluded";
