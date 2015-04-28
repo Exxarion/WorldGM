@@ -34,10 +34,16 @@ class WorldGM extends PluginBase {
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
         $this->getLogger()->info(TextFormat::GREEN."Loaded and enabled successfully");
+        $player = $this->getServer()->getPlayer();
+        
+         if ($player->isOP() && $this->getConfig()->get(WorldGM::CONFIG_AUTOEXCLUDE !== 'false')){ //Auto-excludes OPs. In testing and will not work yet.
+            if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
+            	return true;
 
         $this->saveDefaultConfig();
         $this->reloadConfig();
-    }
+    		}
+        }
     
      public function onDisable() {
         $this->getLogger()->info(TextFormat::BLUE."Unloaded and disabled successfully");
@@ -217,9 +223,6 @@ class WorldGM extends PluginBase {
 				}else{
 					$this->getLogger()->info(TextFormat::GREEN."Your version is up-to-date!");
 				}
-				
-				if($dsc["author"] !== $description->getAuthors()[0]){
-					$this->getLogger()->info(TextFormat::DARK_RED."Sorry, but this plugin is modified and is not supported! Failed to check for updates");
 			}
 		}
 
