@@ -29,20 +29,13 @@ class WorldGM extends PluginBase {
     
     const CONFIG_EXCLUDED = "excluded";
     const CONFIG_WORLDS = "worlds";
-    const CONFIG_AUTOEXCLUDE = "exludeops";
     
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
         $this->getLogger()->info(TextFormat::GREEN."Loaded and enabled successfully");
-        $player = $this->getServer()->getPlayer();
-        
-         if ($player->isOP() && $this->getConfig()->get(WorldGM::CONFIG_AUTOEXCLUDE !== 'false')){ //Auto-excludes OPs. In testing and will not work yet.
-            if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
-            	return true;
 
         $this->saveDefaultConfig();
         $this->reloadConfig();
-    		}
         }
     
      public function onDisable() {
@@ -64,7 +57,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     case "version":
-                        $sender->sendMessage(TextFormat::DARK_GREEN."Your copy of WorldGM is running on v6.1\n".TextFormat::YELLOW.">> Check for updates by running this command:\n".TextFormat::GOLD."/wgm update");
+                        $sender->sendMessage(TextFormat::DARK_GREEN."Your copy of WorldGM is running on v7.0\n".TextFormat::YELLOW.">> Check for updates by running this command:\n".TextFormat::GOLD."/wgm update");
                         return true;
                     case "check":
                         $sender->sendMessage($this->checkGmCmd($sender));
@@ -76,7 +69,7 @@ class WorldGM extends PluginBase {
                     	$sender->sendMessage($this->updatePlugin($sender));
                     	return true;
                     default:
-                        $sender->sendMessage(TextFormat::YELLOW."-------------------\n".TextFormat::GREEN."WorldGM - Version 6.1\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::AQUA."/wgm gm\n".TextFormat::AQUA."/wgm update\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."-------------------");
+                        $sender->sendMessage(TextFormat::YELLOW."-------------------\n".TextFormat::GREEN."WorldGM - Version 7.0\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::AQUA."/wgm gm\n".TextFormat::AQUA."/wgm update\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."-------------------");
                         return true;
                         
                 }
@@ -181,12 +174,7 @@ class WorldGM extends PluginBase {
         if (null !== $player = $this->getServer()->getPlayer($playerpar)) {
             if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
                 return TextFormat::GREEN.$player->getName() . " will not be affected by world gamemode changes";
-            }
-        if ($player->isOP() && $this->getConfig()->get(WorldGM::CONFIG_AUTOEXCLUDE !== 'false')){ //Auto-excludes OPs. In testing and will not work yet.
-            if (Utilities::addprop($this->getConfig(), WorldGM::CONFIG_EXCLUDED, $player->getName())) {
-            	return true;
-            }
-            } else {
+                        } else {
                 return TextFormat::YELLOW.$player->getName() . " has already been excluded";
             }
         } else {
@@ -210,7 +198,8 @@ class WorldGM extends PluginBase {
         } else {
             return TextFormat::RED."[WorldGM] $playerpar is currently offline";
         }
-    }
+}
+
     public function updatePlugin($sender) { //BETA
     $this->getLogger()->info(TextFormat::GREEN."Now checking for plugin updates...");
 				$lst = Utils::getURL("https://raw.githubusercontent.com/Exxarion/WorldGM/master/plugin.yml");
@@ -218,14 +207,12 @@ class WorldGM extends PluginBase {
 				$dsc = \yaml_parse($lst);
 				
 				$description = $this->getDescription();
-				if(version_compare($description->getVersion(), $dsc["version"]) < 0){
-					$this->getLogger()->info(TextFormat::YELLOW."WorldGM v".$dsc["version"]." has been released. Please download the latest version!");
+				if(version_compare($description->getVersion(), $dsc["version"]) < 1){
+					$this->getLogger()->info(TextFormat::YELLOW."WorldGM v".$dsc["version"]." has been released. Please download the latest version here:\n".TextFormat::GOLD."http://github.com/Exxarion/WorldGM/releases");
 				}else{
 					$this->getLogger()->info(TextFormat::GREEN."Your version is up-to-date!");
 				}
 			}
-		}
-
 
     public function checkGmCmd($sender) {
       $sender->sendMessage(TextFormat::AQUA."[WorldGM] Online Player Gamemodes:");
