@@ -207,7 +207,7 @@ class WorldGM extends PluginBase {
 				$dsc = \yaml_parse($lst);
 				
 				$description = $this->getDescription();
-				if(version_compare($description->getVersion(), $dsc["version"]) < 1){
+				if($description->getVersion() !== $dsc['version']){
 					$this->getLogger()->info(TextFormat::YELLOW."WorldGM v".$dsc["version"]." has been released. Please download the latest version here:\n".TextFormat::GOLD."http://github.com/Exxarion/WorldGM/releases");
 				}else{
 					$this->getLogger()->info(TextFormat::GREEN."Your version is up-to-date!");
