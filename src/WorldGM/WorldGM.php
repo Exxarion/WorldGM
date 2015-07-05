@@ -114,9 +114,9 @@ class WorldGM extends PluginBase {
             $gamemodeTo = Server::getDefaultGamemode();
         }
         
-        $gmneedschanging = $player->getGamemode() !== ($gamemodeTo);
+        $gmNeedsChanging = $player->getGamemode() !== ($gamemodeTo);
         
-        if (!$isExcluded && $gmneedschanging) {
+        if (!$isExcluded && $gmNeedsChanging) {
 
             $player->setGamemode($gamemodeTo);
             $player->sendMessage(TextFormat::GREEN."[WorldGM] Your gamemode has been changed to $gamemodeTo");
