@@ -25,8 +25,8 @@ use pocketmine\Server;
 class Utilities {
 
     public static function getWorldGamemode(Config $config, $world) {
-        return (isset($config->get(WorldGM::CONFIG_WORLDS)[$world]) ? $config->get(WorldGM::CONFIG_WORLDS)[$world])
-      }
+        return $config->get(WorldGM::CONFIG_WORLDS)[$world];
+}
 
     public static function setWorldGamemode(Config $config, $world, $gamemode) {
         $worlds = $config->get(WorldGM::CONFIG_WORLDS);
