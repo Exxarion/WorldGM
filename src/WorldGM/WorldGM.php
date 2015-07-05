@@ -45,6 +45,13 @@ class WorldGM extends PluginBase {
 
     public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch ($command->getName()) {
+            case "s":
+        	$sender->setGamemode(0);
+                return true;
+            case "c":
+        	$sender->setGamemode(1);
+                return true;
+
             case "wgm":
                 switch (array_shift($args)) {
                     case "set":
@@ -69,13 +76,8 @@ class WorldGM extends PluginBase {
                     	$sender->sendMessage($this->updatePlugin($sender));
                     	return true;
                     default:
-                        $sender->sendMessage(TextFormat::YELLOW."-------------------\n".TextFormat::GREEN."WorldGM - Version 8.0\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::AQUA."/wgm gm\n".TextFormat::AQUA."/wgm update\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."-------------------");
-                        return true;
-        case "s":
-        	$sender->setGamemode(Survival);
-        case "c":
-        	$sender->setGamemode(Creative);
-                        
+                        $sender->sendMessage(TextFormat::YELLOW."+-------------------+\n".TextFormat::GREEN."WorldGM - Version 8.0\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::AQUA."/wgm gm\n".TextFormat::AQUA."/wgm update\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."+-------------------+");
+                        return true;                        
                 }
             default:
                 return false;
@@ -113,16 +115,11 @@ class WorldGM extends PluginBase {
         $isExcluded = in_array(strtolower($player->getName()), array_map('strtolower', $this->getConfig()->get(WorldGM::CONFIG_EXCLUDED)));
         $worldGamemode = Utilities::getWorldGamemode($this->getConfig(), $world);
         
-        if (($gamemodeTo = Server::getGamemodeFromString($worldGamemode)) == -1) {
-            $this->getLogger()->warning($worldGamemode . ' is not a gamemode, until this is fixed, this plugin will use your default gamemode (Set in server.properties) instead.');
-            $gamemodeTo = Server::getDefaultGamemode();
-        }
-        
-        $gmNeedsChanging = $player->getGamemode() !== ($gamemodeTo);
+        $gmNeedsChanging = $player->getGamemode() !== ($worldGamemode);
         
         if (!$isExcluded && $gmNeedsChanging) {
 
-            $player->setGamemode($gamemodeTo);
+            $player->setGamemode($worldGamemode);
         } else {
             return false;
         }
