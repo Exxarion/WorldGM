@@ -34,9 +34,9 @@ class PlayerEventListener implements Listener {
     }
 
     public function onLevelChange(EntityLevelChangeEvent $event) {
-        $entity = $event->getEntity();
-        if ($entity instanceof Player) {
-            $this->plugin->checkPlayer($entity);
+        $player = $event->getEntity();
+        if ($player instanceof Player) {
+            $this->plugin->checkPlayer($player);
         }
     }
 
