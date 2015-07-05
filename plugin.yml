@@ -1,7 +1,7 @@
 name: WorldGM
 main: WorldGM\WorldGM
-version: 7.0
-api: [1.11.0, 1.12.0]
+version: 8.0
+api: [1.12.0]
 load: POSTWORLD
 author: Exxarion
 description: Set different gamemodes for certain worlds
@@ -11,7 +11,21 @@ commands:
   description: Set different gamemodes, for different worlds.
   usage: "/wgm set <gamemode> (world)\n/wgm <include/exclude> <player>\n/wgm version\n/wgm check\n/wgm gm\n/wgm update"
   permission: worldgm.use
+ s:
+  description: Go into Survival mode
+  usage: "/s"
+  permission: worldgm.survival
+ c:
+  description: Go into Creative mode
+  usage: "/c"
+  permission: worldgm.creative
 permissions:
  worldgm.use:
-  description: "Allows users to use the plugin's features"
+  description: "Allows users to set world gamemodes"
+  default: op
+ worldgm.survival:
+  description: "Allows players to set themselves to survival"
+  default: op
+ worldgm.creative:
+  description: "Allows players to set themselves to creative"
   default: op
