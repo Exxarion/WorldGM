@@ -33,6 +33,7 @@ class WorldGM extends PluginBase {
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
         $this->getLogger()->info(TextFormat::GREEN."Loaded and enabled successfully");
+        $this->updatePlugin($sender);
 
         $this->saveDefaultConfig();
         $this->reloadConfig();
@@ -200,7 +201,7 @@ class WorldGM extends PluginBase {
         }
 }
 
-    public function updatePlugin($sender) { //BETA
+    public function updatePlugin($sender) {
     $this->getLogger()->info(TextFormat::GREEN."Now checking for plugin updates...");
 				$lst = Utils::getURL("https://raw.githubusercontent.com/Exxarion/WorldGM/master/plugin.yml");
 				
