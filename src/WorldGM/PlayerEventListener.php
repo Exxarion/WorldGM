@@ -7,6 +7,7 @@ use pocketmine\event\entity\EntityLevelChangeEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\Player;
+use pocketmine\event\entity\EntityTeleportEvent;
 
 /*
  __        __         _     _  ____ __  __  
@@ -46,6 +47,13 @@ class PlayerEventListener implements Listener {
 
     public function onQuit(PlayerQuitEvent $event) {
         $this->plugin->checkPlayer($event->getPlayer());
+    }
+
+    public function onTeleport(EntityTeleportEvent $event) {
+        $player = $event->getEntity();
+        if ($player instanceof Player) {
+        	$this->plugin->checkPlayer($player);
+        }
     }
 
 }
