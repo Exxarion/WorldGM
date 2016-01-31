@@ -64,7 +64,7 @@ class WorldGM extends PluginBase {
                         $sender->sendMessage($this->includePlayerCmd($sender, $args));
                         return true;
                     case "version":
-                        $sender->sendMessage(TextFormat::DARK_GREEN."Your copy of WorldGM is running on v8.0\n".TextFormat::YELLOW.">> Check for updates by running this command:\n".TextFormat::GOLD."/wgm update");
+                        $sender->sendMessage(TextFormat::DARK_GREEN."Your copy of WorldGM is running on v9.0\n".TextFormat::YELLOW.">> Check for updates by running this command:\n".TextFormat::GOLD."/wgm update");
                         return true;
                     case "check":
                         $sender->sendMessage($this->checkGmCmd($sender));
@@ -76,7 +76,7 @@ class WorldGM extends PluginBase {
                     	$sender->sendMessage($this->updatePlugin($sender));
                     	return true;
                     default:
-                        $sender->sendMessage(TextFormat::YELLOW."+-------------------+\n".TextFormat::GREEN."WorldGM - Version 8.0\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::AQUA."/wgm gm\n".TextFormat::AQUA."/wgm update\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."+-------------------+");
+                        $sender->sendMessage(TextFormat::YELLOW."+-------------------+\n".TextFormat::GREEN."WorldGM - Version 9.0\n".TextFormat::BLUE."Set Different gamemodes for different worlds\n".TextFormat::DARK_GREEN."Usages:\n".TextFormat::AQUA."/wgm set <0/1/2> <world>\n".TextFormat::AQUA."/wgm <include/exclude> <player>\n".TextFormat::AQUA."/wgm version\n".TextFormat::AQUA."/wgm check\n".TextFormat::AQUA."/wgm gm\n".TextFormat::AQUA."/wgm update\n".TextFormat::DARK_RED."- Created by Exxarion\n".TextFormat::YELLOW."+-------------------+");
                         return true;                        
                 }
             default:
