@@ -34,5 +34,10 @@ Command  | Description | Permission
 /s | Set your gamemode to Survival | wgm.survival
 /c | Set your gamemode to Creative | wgm.creative
 
+<br/>
+<br/>
+NOTICE: If you are getting **ArrayOutOfBoundsException: "Undefined index" (E_NOTICE)** errors, it means that you forgot to set the gamemode for the world specified after **undefined index:**. Be sure to set the gamemode of that world with /wgm set!
 
+<br/>
+<br/>
 - This is an official A+Craft plugin!
