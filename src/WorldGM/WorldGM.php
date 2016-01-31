@@ -33,7 +33,6 @@ class WorldGM extends PluginBase {
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
         $this->getLogger()->info(TextFormat::GREEN."Loaded and enabled successfully");
-        $this->updatePlugin($sender);
 
         $this->saveDefaultConfig();
         $this->reloadConfig();
@@ -114,7 +113,7 @@ class WorldGM extends PluginBase {
         $world = $player->getLevel()->getName();
 
         $isExcluded = in_array(strtolower($player->getName()), array_map('strtolower', $this->getConfig()->get(WorldGM::CONFIG_EXCLUDED)));
-        $worldGamemode = Utilities::getWorldGamemode($this->getConfig(), $world);
+        $worldGamemode = $this->getConfig()->get(WorldGM::CONFIG_WORLDS)[$world];
         
         $gmNeedsChanging = $player->getGamemode() !== ($worldGamemode);
         
