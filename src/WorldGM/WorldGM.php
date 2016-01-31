@@ -115,8 +115,6 @@ class WorldGM extends PluginBase {
         $isExcluded = in_array(strtolower($player->getName()), array_map('strtolower', $this->getConfig()->get(WorldGM::CONFIG_EXCLUDED)));
         $worldGamemode = $this->getConfig()->get(WorldGM::CONFIG_WORLDS)[$world];
         
-        $gmNeedsChanging = $player->getGamemode() !== $worldGamemode;
-        
         if (!$isExcluded && $player->getGamemode() !== $worldGamemode) {
 
             $player->setGamemode($worldGamemode);
